@@ -10,17 +10,17 @@ import java.util.List;
 @Mapper
 public interface AdvertisementMapper {
     @Select("select * from advertisement where adv_id=#{advId}")
-    public Advertisement selectAdvertisementById(String advId);
+    public Advertisement selectAdvertisementById(Integer advId);
 
     @Select("select * from advertisement")
     public List<Advertisement> selectAll();
 
-    @Insert("insert into advertisement(com_id,picture,describe) values(#{comId},#{picture},#{describe}")
+    @Insert("insert into advertisement(com_id,picture,describes) values(#{comId},#{picture},#{describes})")
     public void insert(Advertisement advertisement);
 
-    @Delete("delete advertisement where adv_id=#{advId}")
-    public void deleteAdvertisementById(String advId);
+    @Delete("delete from advertisement where adv_id=#{advId}")
+    public void deleteAdvertisementById(Integer advId);
 
-    @Update("update advertisement set picture=#{picture},describe=#{describe} where adv_id=#{advId}")
+    @Update("update advertisement set com_id=#{comId},picture=#{picture},describes=#{describes} where adv_id=#{advId}")
     public void update(Advertisement advertisement);
 }

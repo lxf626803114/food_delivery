@@ -3,7 +3,7 @@
 
 spring:
   datasource:
-    url: jdbc:mysql://47.100.35.159:3306/waimai?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    url: jdbc:mysql://47.100.35.159:3306/waimai?useUnicode=true&characterEncoding=utf8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: Root@2019

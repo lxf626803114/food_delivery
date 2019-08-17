@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>广告列表</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="style/adminStyle.css" th:href="@{style/adminStyle.css}"  rel="stylesheet" type="text/css">
+<script src="js\jquery.js"></script>
+<script src="js\public.js"></script>
+</head>
+<body>
+ <div class="wrap">
+  <div class="page-title">
+    <span class="modular fl"><i></i><em>广告列表</em></span>
+    <span class="modular fr"><a th:href="@{/advertisement}" class="pt-link-btn">+添加广告</a></span>
+  </div>
+  <table class="list-style Interlaced">
+   <tr>
+    <th>广告ID</th>
+    <th>商品ID</th>
+    <th>广告图片</th>
+    <th>广告描述</th>
+    <th>操作</th>
+   </tr>
+   <tr th:each="advertisement:${advertisements}">
+    <td th:text="${advertisement.getAdvId()}"></td>
+    <td th:text="${advertisement.getComId()}"></td>
+    <td th:text="${advertisement.getPicture()}"></td>
+    <td th:text="${advertisement.getDescribes()}"></td>
+    <td class="center">
+     <a th:href="@{/advertisement/}+${advertisement.getAdvId()}" title="修改"><img src="images\icon_edit.gif"></a>
+     <button class="btn btn-sm btn-danger btn-del" th:attr="del_uri=@{/advertisement/}+${advertisement.getAdvId()}" title="删除"><img src="images\icon_drop.gif"></button>
+    </td>
+   </tr>
+  </table>
+     <form action="" method="post" id="advDelForm">
+         <input type="hidden" name="_method" value="delete">
+
+     </form>
+  <!-- BatchOperation -->
+  <div style="overflow:hidden;">
+      <!-- Operation -->
+	  <div class="BatchOperation fl">
+	   <input type="checkbox" id="del">
+	   <label for="del" class="btnStyle middle">全选</label>
+	   <input type="button" value="批量删除" class="btnStyle">
+	  </div>
+	  <!-- turn page -->
+	  <div class="turnPage center fr">
+	   <a>第一页</a>
+	   <a>1</a>
+	   <a>最后一页</a>
+	  </div>
+  </div>
+ </div>
+ <script type="text/javascript">
+     $(function(){
+         $(".btn-del").click(function(){
+             alert($(this).attr("del_uri"))
+             $("#advDelForm").attr("action",$(this).attr("del_uri")).submit();
+             return false;
+         })
+     })
+ </script>
+</body>
+</html>
