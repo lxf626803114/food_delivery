@@ -11,7 +11,7 @@ public class ShoppingCar {
     private Integer price;
     private Integer quantity;
     private String size;
-    private String describe;
+    private String describes;
     private String picture;
     private Integer addId;
     private String address;
