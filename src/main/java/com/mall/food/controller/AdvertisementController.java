@@ -1,5 +1,7 @@
 package com.mall.food.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.mall.food.mapper.AdvertisementMapper;
 import com.mall.food.pojo.Advertisement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +17,11 @@ public class AdvertisementController {
     private AdvertisementMapper advertisementMapper;
     @GetMapping("/advertisements")
     public String findAll(Model model){
+//        PageHelper.startPage(1,3);//这行是重点，表示从pageNum页开始，每页pageSize条数据
         List<Advertisement> advertisements = advertisementMapper.selectAll();
+//        PageInfo<Advertisement> pageInfo = new PageInfo(advertisements);
         model.addAttribute("advertisements",advertisements);
+//        model.addAttribute("pageInfo",pageInfo);
         return "advertising_list";
     }
 

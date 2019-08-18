@@ -35,12 +35,12 @@
     </form>
     <!-- BatchOperation -->
     <div style="overflow:hidden;">
-        <!-- Operation -->
-        <div class="BatchOperation fl">
-            <input type="checkbox" id="del">
-            <label for="del" class="btnStyle middle">全选</label>
-            <input type="button" value="批量删除" class="btnStyle">
-        </div>
+<!--        &lt;!&ndash; Operation &ndash;&gt;-->
+<!--        <div class="BatchOperation fl">-->
+<!--            <input type="checkbox" id="del">-->
+<!--            <label for="del" class="btnStyle middle">全选</label>-->
+<!--            <input type="button" value="批量删除" class="btnStyle">-->
+<!--        </div>-->
         <!-- turn page -->
         <div class="turnPage center fr">
             <a>第一页</a>
@@ -52,8 +52,10 @@
 <script type="text/javascript">
     $(function(){
         $(".btn-del").click(function(){
-            alert($(this).attr("del_uri"))
-            $("#commDelForm").attr("action",$(this).attr("del_uri")).submit();
+            if (confirm("确认要删除吗？"))
+            {
+                $("#commDelForm").attr("action",$(this).attr("del_uri")).submit();
+            }
             return false;
         })
     })

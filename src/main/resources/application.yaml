@@ -64,3 +64,11 @@ mybatis:
   #配置主配置文件位置  和mapper.xml文件位置
   config-location:
   mapper-locations:
+
+# 分页配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
