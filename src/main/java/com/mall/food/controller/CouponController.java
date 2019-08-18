@@ -5,8 +5,7 @@ import com.mall.food.service.CouponService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,6 +19,37 @@ public class CouponController {
         List<Coupon> list=couponService.getAll();
         model.addAttribute("coupons",list);
          return "coupon";
+      }
+      //查询单条数据，判断是否为空。对应进行添加或修改
+      @GetMapping("add/{coupon}")
+      public String fingOne(@PathVariable Integer coupon, Model model){
+          Coupon coupon1=couponService.selectOne(coupon);
+          model.addAttribute("coupon",coupon1);
+          return "couponAdd";
+      }
+      //修改方法的调用
+      @PutMapping("add")
+      public  String modify(Coupon coupon){
+         couponService.update(coupon);
+         //修改完重定向到查询列表
+         return "redirect:/coupon/alls";
+      }
+      //进入添加页面
+      @GetMapping("add")
+      public String init(){
+          return "couponAdd";
+      }
+      //实现添加功能后重定向到查询列表
+      @PostMapping("add")
+      public String insert(Coupon coupon){
+          couponService.insert(coupon);
+          return "redirect:/coupon/alls";
+      }
+
+      @DeleteMapping("add/{coupon}")
+      public String delete(@PathVariable Integer coupon){
+          couponService.delete(coupon);
+          return "redirect:/coupon/alls";
       }
 
 }

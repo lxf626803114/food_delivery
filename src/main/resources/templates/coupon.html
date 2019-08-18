@@ -18,8 +18,8 @@
 <body>
 <div class="wrap">
     <div class="page-title">
-        <span class="modular fl"><i></i><em>广告列表</em></span>
-        <span class="modular fr"><a href="#" class="pt-link-btn">+添加广告</a></span>
+        <span class="modular fl"><i></i><em>优惠券列表</em></span>
+        <span class="modular fr"><a th:href="@{/coupon/add}" class="pt-link-btn" style="text-decoration: none">+添加优惠券</a></span>
     </div>
     <table class="list-style Interlaced">
         <thead >
@@ -28,6 +28,7 @@
             <th class="center">描述</th>
             <th class="center">满减条件</th>
             <th class="center">减少金额</th>
+            <th class="center">优惠券数量</th>
             <th class="center">图片地址</th>
             <th colspan="2" class="center"> 操作</th>
         </tr>
@@ -36,22 +37,19 @@
         <tr th:each="c:${coupons}">
             <td th:text="${c.coupon}"></td>
             <td th:text="${c.describes}"></td>
-            <td th:text="${c.condition}"></td>
+            <td th:text="${c.toplimit}"></td>
             <td th:text="${c.amount}"></td>
+            <td th:text="${c.numbers}"></td>
             <td th:text="${c.icon}"></td>
-            <td><button class="btn btn-warning"><a th:href="@{#}" style="text-decoration: none ;color: white">修改</a></button></td>
-            <td><button class="btn btn-danger"><a th:href="@{#}" style="text-decoration: none ;color: white" >删除</a></button></td>
+            <td><button class="btn btn-warning"><a th:href="@{/coupon/add/}+${c.coupon}" style="text-decoration: none ;color: white">修改</a></button></td>
+            <td><button class="btn btn-danger "><a class="btn-del" th:attr="del_uri=@{/coupon/add/}+${c.coupon}" style="text-decoration: none ;color: white" >删除</a></button></td>
         </tr>
         </tbody>
     </table>
-    <!-- BatchOperation -->
-    <div style="overflow:hidden;">
-        <!-- Operation -->
-        <div class="BatchOperation fl">
-            <input type="checkbox" id="del">
-            <label for="del" class="btnStyle middle">全选</label>
-            <input type="button" value="批量删除" class="btnStyle">
-        </div>
+    <form action="" method="post" id="advDelForm">
+        <input type="hidden" name="_method" value="delete">
+    </form>
+
         <!-- turn page -->
         <div class="turnPage center fr">
             <a>第一页</a>
@@ -60,5 +58,15 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(function(){
+        $(".btn-del").click(function(){
+            if (confirm("确定删除吗？")) {
+                $("#advDelForm").attr("action",$(this).attr("del_uri")).submit();
+            }
+            return false;
+        })
+    })
+</script>
 </body>
 </html>

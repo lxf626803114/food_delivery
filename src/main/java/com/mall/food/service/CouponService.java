@@ -11,8 +11,23 @@ import java.util.List;
 public class CouponService {
     @Autowired
     private CouponMapper couponMapper;
+
     public List<Coupon> getAll(){
         return  couponMapper.selAllCoupons();
+    }
+
+    public Coupon selectOne(Integer coupon){
+        Coupon coupon1=couponMapper.selCouponByType(coupon);
+        return  coupon1;
+    }
+    public void insert(Coupon coupon){
+        couponMapper.insert(coupon);
+    }
+    public void update(Coupon coupon){
+        couponMapper.update(coupon);
+    }
+    public void delete(Integer coupon){
+        couponMapper.deleteById(coupon);
     }
 
 }
