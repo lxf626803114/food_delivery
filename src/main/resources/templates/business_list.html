@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  lang="en"  xmlns:th="http://www.thymeleaf.org"  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<title>商家列表</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="style\adminStyle.css" rel="stylesheet" type="text/css">
+<script src="js\jquery.js"></script>
+<script src="js\public.js"></script>
+ <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+ <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+ <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+ <div class="wrap">
+  <div class="page-title">
+    <span class="modular fl"><i class="user"></i><em>商家列表</em></span>
+  </div>
+  <div class="operate">
+   <form action="" method="post">
+    <input type="text" class="textBox length-long" name="username" placeholder="输入会员账号...">
+    <input type="submit" value="查询" class="tdBtn">
+   </form>
+  </div>
+  <table class="list-style Interlaced" align="center">
+   <tr style="text-align: center">
+    <th style="text-align: center">店铺名称</th>
+     <th style="text-align: center">店铺LOGO</th>
+     <th style="text-align: center">店铺图片</th>
+     <th style="text-align: center">法人姓名</th>
+     <th style="text-align: center">店铺账号</th>
+     <th style="text-align: center">法人年龄</th>
+     <th style="text-align: center">法人联系方式</th>
+     <th style="text-align: center">店铺地址</th>
+    <th style="text-align: center">操作</th>
+   </tr>
+   <tr th:each="business:${businesses}">
+
+    <td class="center" th:text="${business.getBName()}"></td>
+    <td class="center" ><img th:src="${business.getBLogo()}" style="width: 50px;height: 40px" alt=""/></td>
+    <td class="center" ><img th:src="${business.getBPicture()}" style="width: 50px;height: 40px" alt=""/></td>
+    <td class="center" th:text="${business.getBossName()}"></td>
+    <td class="center" th:text="${business.BId}"></td>
+    <td class="center" th:text="${business.getAge()}"></td>
+    <td class="center" th:text="${business.getBTel()}"></td>
+    <td class="center" th:text="${business.getAddress()}"></td>
+    <td class="center">
+     <!--<a th:href="@{/usercustomer/}+${usercustomer.userId}"  title="编辑"><img src="images\icon_edit.gif"></a>
+     <a href="account.html" class="inline-block" title="资金管理"><img src="images\icon_account.gif"></a>-->
+
+     <button class="delete btn btn-danger"   th:attr="del_uri=@{/business/}+${business.BId}"> 删除</button>
+
+    </td>
+   </tr>
+   
+
+  </table>
+  <form action="" method="post" id="userDelForm" style="display: none">
+   <input  type="hidden" name="_method" value="delete"/>
+   <button type="submit" class="btndelete">删除</button>
+  </form>
+
+
+
+
+
+  <!-- BatchOperation -->
+  <div style="overflow:hidden;">
+      <!-- Operation -->
+
+	  <!-- turn page -->
+	  <div class="turnPage center fr">
+	   <a>第一页</a>
+	   <a>1</a>
+	   <a>最后一页</a>
+	  </div>
+  </div>
+ </div>
+
+
+ <script type="text/javascript">
+  $(function () {
+   $(".delete").click(function () {
+    var r=confirm("确认要删除吗");
+    if (r==true) {
+     $("#userDelForm").attr("action",$(this).attr("del_uri")).submit();}
+
+
+    return false;
+   })
+  })
+
+ </script>
+
+</body>
+
+
+</html>

@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class CommoditySize {
     private String size;
-    private String describe;
+    private String describes;
 }

@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>会员列表</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="style\adminStyle.css" rel="stylesheet" type="text/css">
+<script src="js\jquery.js"></script>
+<script src="js\public.js"></script>
+ <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+ <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+ <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+ <div class="wrap">
+  <div class="page-title">
+    <span class="modular fl"><i class="user"></i><em>会员列表</em></span>
+  </div>
+  <div class="operate">
+   <form>
+    <input type="text" class="textBox length-long" placeholder="输入会员昵称、姓名、手机号码...">
+    <input type="button" value="查询" class="tdBtn">
+   </form>
+  </div>
+  <table class="list-style Interlaced" align="center">
+   <tr style="text-align: center">
+    <th style="text-align: center">用户类别</th>
+     <th style="text-align: center">用户账号</th>
+     <th style="text-align: center">会员昵称</th>
+     <th style="text-align: center">联系方式</th>
+     <th style="text-align: center">电子邮箱</th>
+     <th style="text-align: center">真实姓名</th>
+     <th style="text-align: center">年龄</th>
+     <th style="text-align: center">性别</th>
+     <th style="text-align: center">住址</th>
+     <th style="text-align: center">职业</th>
+     <th style="text-align: center">操作</th>
+   </tr>
+   <tr th:each="usermember:${usermembers}">
+    <td class="center" th:text="${usermember.member==0?'普通用户':'会员'}"></td>
+    <td class="center" th:text="${usermember.userId}"></td>
+    <td class="center" th:text="${usermember.userName}"></td>
+    <td class="center" th:text="${usermember.tel}"></td>
+    <td class="center" th:text="${usermember.email}"></td>
+    <td class="center" th:text="${usermember.name}"></td>
+    <td class="center" th:text="${usermember.age}"></td>
+    <td class="center" th:text="${usermember.sex}"></td>
+    <td class="center" th:text="${usermember.address}"></td>
+    <td class="center" th:text="${usermember.job}"></td>
+
+    <td class="center">
+     <!--<a th:href="@{/usercustomer/}+${usercustomer.userId}"  title="编辑"><img src="images\icon_edit.gif"></a>
+     <a href="account.html" class="inline-block" title="资金管理"><img src="images\icon_account.gif"></a>-->
+     <a  class="update btn btn-danger" title="降级" th:href="@{/usermember/}+${usermember.userId}"> 降级</a>
+     <button class="delete btn btn-danger"   th:attr="del_uri=@{/usermember/}+${usermember.userId}"> 删除</button>
+    </td>
+   </tr>
+   
+
+  </table>
+  <form action="" method="post" id="userDelForm" style="display: none">
+
+
+   <input  type="hidden" name="_method" value="delete"/>
+   <button type="submit" class="btndelete">删除</button>
+  </form>
+
+
+
+
+
+  <!-- BatchOperation -->
+  <div style="overflow:hidden;">
+      <!-- Operation -->
+
+	  <!-- turn page -->
+	  <div class="turnPage center fr">
+	   <a>第一页</a>
+	   <a>1</a>
+	   <a>最后一页</a>
+	  </div>
+  </div>
+ </div>
+
+
+<script type="text/javascript">
+ $(function () {
+  $(".delete").click(function () {
+    var r=confirm("确认要删除吗");
+    if (r==true) {
+     $("#userDelForm").attr("action",$(this).attr("del_uri")).submit();}
+
+
+    return false;
+  })
+ })
+
+</script>
+
+</body>
+
+
+</html>

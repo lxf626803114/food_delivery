@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class OrderSchedule {
     private String schedule;
-    private String describe;
+    private String describes;
 }

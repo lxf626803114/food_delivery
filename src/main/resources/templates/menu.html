@@ -6,9 +6,8 @@
 <link href="style\adminStyle.css" th:href="@{style/adminStyle.css}" rel="stylesheet" type="text/css">
 <script src="js\jquery.js"></script>
 <script src="js\public.js"></script>
-
 </head>
-<body style="background:#313131" >
+<body style="background:#313131">
 <div class="menu-list">
  <a href="main.html" target="mainCont" class="block menu-list-title center" style="border:none;margin-bottom:8px;color:#fff;">起始页</a>
  <ul>
@@ -18,9 +17,9 @@
   </li>
   <li>
    <ul class="menu-children">
-    <li><a href="order_list.html" title="用户列表" target="mainCont">用户列表</a></li>
-    <li><a href="order_list.html" title="用户列表" target="mainCont">会员列表</a></li>
-    <li><a href="order_list.html" title="用户列表" target="mainCont">商家信息</a></li>
+    <li><a href="/user_list"     th:href="@{/user_list}" title="用户列表" target="mainCont">用户列表</a></li>
+    <li><a href="/member_list"   th:href="@{/member_list}" title="用户列表" target="mainCont">会员列表</a></li>
+    <li><a href="/business_list" th:href="@{/business_list}" title="用户列表" target="mainCont">商家信息</a></li>
    </ul>
   </li>
  
@@ -52,7 +51,7 @@
   <li>
    <ul class="menu-children">
     <li><a href="basic_settings.html" title="客服模块" target="mainCont">客服模块</a></li>
-    <li><a href="admin_list.html" title="优惠券管理" target="mainCont">优惠券信息</a></li>
+    <li><a th:href="@{/coupon/alls}" title="优惠券管理" target="mainCont">优惠券信息</a></li>
     <li><a href="admin_list.html" title="优惠券发放" target="mainCont">优惠券发放</a></li>
    </ul>
   </li>
