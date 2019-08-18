@@ -16,7 +16,7 @@ public class DefaultConfig implements WebMvcConfigurer {
         registry.addViewController("/main.html").setViewName("main");
         registry.addViewController("/menu.html").setViewName("menu");
         registry.addViewController("/bar.html").setViewName("bar");
-
+        registry.addViewController("/register.html").setViewName("register");
     }
 //    //日期格式化有错
 //    @Override
