@@ -77,17 +77,16 @@
 									<h4 class="title_name"><img src="images/login_title.png" /></h4>
 									<fieldset>
 										<ul>
+											<li>
+												<p style="color: red;" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+											</li>
 											<li class="frame_style form_error"><label class="user_icon iconfont">&#xe620;</label>
 												<input name="aName" type="text"
 												 data-name="用户名" id="username" /><i>用户名</i></li>
 											<li class="frame_style form_error"><label class="password_icon iconfont">&#xe625;</label>
 												<input name="password" type="password"
 												 data-name="密码" id="userpwd" /><i>密码</i></li>
-<!--											<li class="frame_style form_error"><label class="Codes_icon iconfont">&#xe624;</label>-->
-<!--												<input name="" type="text"-->
-<!--												 data-name="验证码" id="Codes_text" /><i>验证码</i>-->
-<!--												<div class="Codes_region"><img src="images/yanzhengma.png" width="100%" height="38px"></div>-->
-<!--											</li>-->
+
 										</ul>
 										<div class="clearfix">
 											<button type="submit" class="login_btn" id="login_btn">登&nbsp;陆 </button>
