@@ -13,7 +13,7 @@ public class UserCustomer {
     private String password;
     private String tel;
     private String email;
-    private String key;
+    private String userKey;
     private String name;
     private Integer age;
     private String sex;

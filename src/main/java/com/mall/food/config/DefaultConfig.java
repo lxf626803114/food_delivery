@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class DefaultConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("index");
+        registry.addViewController("/").setViewName("login");
 //        先经过controller层的处理器,在经过下面的
         registry.addViewController("/index.html").setViewName("index");
         registry.addViewController("/top.html").setViewName("top");

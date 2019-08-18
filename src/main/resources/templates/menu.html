@@ -1,10 +1,9 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
- xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>左侧导航</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="style\adminStyle.css" rel="stylesheet" type="text/css">
+<link href="style\adminStyle.css" th:href="@{style/adminStyle.css}" rel="stylesheet" type="text/css">
 <script src="js\jquery.js"></script>
 <script src="js\public.js"></script>
 </head>
@@ -30,8 +29,7 @@
   </li>
   <li>
    <ul class="menu-children">
-    <li><a href="product_list.html" title="商品列表" target="mainCont">商品类型</a></li>
-
+    <li><a th:href="@{/commodityTypes}" title="商品列表" target="mainCont">商品类型</a></li>
    </ul>
   </li>
   
@@ -41,11 +39,11 @@
   </li>
   <li>
    <ul class="menu-children">
-    <li><a href="user_list.html" title="广告列表" target="mainCont">广告信息</a></li>
+    <li><a th:href="@{/advertisements}" title="广告信息" target="mainCont">广告信息</a></li>
     <li><a href="user_list.html" title="广告推送" target="mainCont">广告推送</a></li>
    </ul>
   </li>
-  
+
   <li class="menu-list-title">
    <span>服务中心</span>
    <i>◢</i>
@@ -59,5 +57,6 @@
   </li>
  </ul>
 </div>
+<div class="menu-footer">© 版权所有 2015 "DeathGhost"</div>
 </body>
 </html>

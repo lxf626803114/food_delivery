@@ -12,6 +12,9 @@ public interface AdministratorMapper {
     @Select("select * from administrator where a_id=#{aId}")
     public Administrator selectAdministratorById(String aId);
 
+    @Select("select * from administrator where a_name = #{aName}")
+    public Administrator selectByAname(String aName);
+
     @Select("select * from administrator")
     public List<Administrator> selectAll();
 
