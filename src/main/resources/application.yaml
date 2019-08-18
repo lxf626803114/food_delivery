@@ -2,6 +2,8 @@
 #  port: 8080
 
 spring:
+  resources:
+    static-locations: classpath:/static,classpath:/templates
   datasource:
     url: jdbc:mysql://47.100.35.159:3306/waimai?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&characterEncoding=utf8
     driver-class-name: com.mysql.cj.jdbc.Driver
