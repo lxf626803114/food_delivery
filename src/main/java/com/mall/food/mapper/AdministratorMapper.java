@@ -18,7 +18,7 @@ public interface AdministratorMapper {
     @Select("select * from administrator")
     public List<Administrator> selectAll();
 
-    @Insert("insert into administrator(a_id,password,a_name,a_tel,a_email,a_head) values(#{aId},#{password},#{aName},#{aTel},#{aEmail},#{aHead}")
+    @Insert("insert into administrator(a_id,password,a_name,a_tel,a_email,a_head) values(#{aId},#{password},#{aName},#{aTel},#{aEmail},#{aHead})")
     public void insert(Administrator administrator);
 
     @Delete("delete administrator where a_id=#{aId}")

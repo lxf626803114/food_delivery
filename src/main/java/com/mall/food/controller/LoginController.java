@@ -34,4 +34,19 @@ public class LoginController {
         return "login";
     }
 
+    @RequestMapping("/register")
+    public String register(String aName,String password,String repassword,String tel,Map<String,Object> map){
+        if(!password.equals(repassword)){
+            map.put("msg","密码不一致");
+            return "register";
+        }
+        Administrator administrator = new Administrator();
+        administrator.setAId(tel);
+        administrator.setATel(tel);
+        administrator.setPassword(password);
+        administrator.setAName(aName);
+        administratorMapper.insert(administrator);
+        return "login.html";
+    }
+
 }
