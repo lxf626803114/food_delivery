@@ -19,8 +19,8 @@ public interface BusinessMapper {
             "values(#{bId},#{bName},#{password},#{bTel},#{bEmail},#{key},#{bossName},#{age},#{sex},#{address},#{balance},#{bPicture},#{bLogo}")
     public void insert(Business business);
 
-    @Delete("delete business where b_id=#{bId}")
-    public void deleteBusinessById(String bId);
+    @Delete("delete  from business where b_id=#{BId}")
+    public void deleteBusinessById(String  BId);
 
     @Update("update business set b_name=#{bName},password=#{password},b_tel=#{bTel}," +
             "b_email=#{bEmail},key=#{key},boss_name=#{bossName},age=#{age},sex=#{sex}," +
