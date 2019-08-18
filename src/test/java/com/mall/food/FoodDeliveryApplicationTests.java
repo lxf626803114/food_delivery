@@ -2,9 +2,11 @@ package com.mall.food;
 
 import com.mall.food.mapper.AdvertisementMapper;
 import com.mall.food.mapper.CommodityTypeMapper;
+import com.mall.food.mapper.CouponMapper;
 import com.mall.food.mapper.UserCustomerMapper;
 import com.mall.food.pojo.Advertisement;
 import com.mall.food.pojo.CommodityType;
+import com.mall.food.pojo.Coupon;
 import com.mall.food.pojo.UserCustomer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,9 +30,21 @@ public class FoodDeliveryApplicationTests {
     private CommodityTypeMapper commodityTypeMapper;
     @Autowired
     private UserCustomerMapper userCustomerMapper;
+    @Autowired
+    private CouponMapper couponMapper;
     @Test
     public void contextLoads() {
+//        Coupon coupon=new Coupon();
+//        coupon.setDescribes("youhuiqu");
+//        coupon.setToplimit(12);
+//        coupon.setAmount(32);
+//        coupon.setNumbers(34);
+//        coupon.setCoupon(5);
+//        //couponMapper.insert(coupon);
+//        couponMapper.update(coupon);
 
+        //System.out.println(couponMapper.selCouponByType(5));
+  couponMapper.deleteById(3);
     }
 
 }
