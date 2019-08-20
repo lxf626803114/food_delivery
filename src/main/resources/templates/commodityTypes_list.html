@@ -10,6 +10,12 @@
 </head>
 <body>
 <div class="wrap">
+    <div class="operate">
+        <form th:action="@{/commodity}" >
+            <input type="text" class="textBox length-long" name="describes" placeholder="请输入关键字搜索">
+            <input type="submit" value="查询" class="tdBtn">
+        </form>
+    </div>
     <div class="page-title">
         <span class="modular fl"><i></i><em>商品列表</em></span>
         <span class="modular fr"><a th:href="@{/commodityType}" class="pt-link-btn">+添加</a></span>

@@ -27,6 +27,13 @@ public class CommodityTypeController {
         return "commodityTypes";
     }
 
+    @GetMapping("/commodity")
+    public String fuzzy(String describes,Model model){
+        List<CommodityType> commodityTypes = commodityTypeMapper.selectByDescribes(describes);
+        model.addAttribute("commodityTypes",commodityTypes);
+        return "commodityTypes_list";
+    }
+
     @PutMapping("/commodityType")
     public String modify(CommodityType commodityType){
         commodityTypeMapper.update(commodityType);

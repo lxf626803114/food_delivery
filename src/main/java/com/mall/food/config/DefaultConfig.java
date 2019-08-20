@@ -36,7 +36,7 @@ public class DefaultConfig implements WebMvcConfigurer {
         //拦截其他界面
         registry.addInterceptor(new LoginIntercepter())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/static/**","/","/login","/login.html","/register","/register.html");
+                .excludePathPatterns("/passwordTest","/tel","/static/**","/","/login","/login.html","/register","/register.html");
     }
 
     @Override
