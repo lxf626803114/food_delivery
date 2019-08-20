@@ -42,14 +42,24 @@ public class LoginController {
 
 
     @RequestMapping("/register")
-    public String register(String aName, String password, String tel) {
-        Administrator administrator = new Administrator();
-        administrator.setAId(tel);
-        administrator.setATel(tel);
-        administrator.setPassword(password);
-        administrator.setAName(aName);
-        administratorMapper.insert(administrator);
-        return "login.html";
+    public String register(String aName, String password,String repassword ,String tel) {
+        if (password.equals(repassword)) {
+            List<Administrator> administrators = administratorMapper.selectAll();
+            for (Administrator administrator : administrators) {
+                if (!administrator.getATel().equals(tel)) {
+                    Administrator a = new Administrator();
+                    a.setAId(tel);
+                    a.setATel(tel);
+                    a.setPassword(password);
+                    a.setAName(aName);
+                    administratorMapper.insert(a);
+                    return "login.html";
+                }else {
+                    return "register.html";
+                }
+            }
+        }
+        return "register.html";
     }
 
     @RequestMapping(value = "/tel",method = RequestMethod.GET)
@@ -58,7 +68,7 @@ public class LoginController {
         List<Administrator> administrators = administratorMapper.selectAll();
         Map<String,String> map = new HashMap<>();
         for (Administrator administrator : administrators) {
-            if (phone!=""&&administrator.getATel().equals(phone)){
+            if (administrator.getATel().equals(phone)){
                     map.put("telTest","电话已被注册");
                     return map;
             }
