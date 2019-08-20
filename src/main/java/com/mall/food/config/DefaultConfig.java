@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -25,6 +26,7 @@ public class DefaultConfig implements WebMvcConfigurer {
         registry.addViewController("/menu.html").setViewName("menu");
         registry.addViewController("/bar.html").setViewName("bar");
         registry.addViewController("/ma.html").setViewName("index");
+        registry.addViewController("/register.html").setViewName("register");
 
     }
 
@@ -34,7 +36,11 @@ public class DefaultConfig implements WebMvcConfigurer {
         //拦截其他界面
         registry.addInterceptor(new LoginIntercepter())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/static/**","/","/login","/login.html");
+                .excludePathPatterns("/static/**","/","/login","/login.html","/register","/register.html");
     }
 
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+    }
 }
