@@ -61,25 +61,7 @@
   </table>
      <!-- Operation -->
 
-     <!-- turn page -->
-     <nav aria-label="Page navigation" style="margin-right: 0px">
-         <ul class="pagination" style="float: right">
-             <li>
 
-                 <a th:if="${num-1}!=0"  th:href="@{/businesspage}+${num-1}" aria-label="Previous">
-                     <span aria-hidden="true">&laquo;</span>
-                 </a>
-             </li>
-             <li th:each="num:${count}">
-                 <a th:href="@{/businesspage}+${num}" th:text="${num}" ></a>
-             </li>
-             <li>
-                 <a th:if="${num+1} <= ${size/10+1}"  th:href="@{/user/list/}+${num+1}" aria-label="Next">
-                     <span aria-hidden="true">&raquo;</span>
-                 </a>
-             </li>
-         </ul>
-     </nav>
   <form action="" method="post" id="userDelForm" style="display: none">
    <input  type="hidden" name="_method" value="delete"/>
    <button type="submit" class="btndelete">删除</button>
