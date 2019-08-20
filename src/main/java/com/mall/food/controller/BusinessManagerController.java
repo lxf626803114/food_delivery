@@ -34,35 +34,13 @@ public class BusinessManagerController {
         businessMapper.deleteBusinessById(BId);
         return "redirect:/business_list";
     }
-@RequestMapping("/businessid")
+
+    @RequestMapping("/businessid")
     public  String  LikeBusiness(String bId , ModelMap map){
-      List<Business> businesses=   businessMapper.selectLikeBusiness(bId);
+      List<Business> businesses=businessMapper.selectLikeBusiness(bId);
       map.addAttribute("businesses",businesses);
       return "business_list";
     }
-    @GetMapping("businesspage/{num}")
-    public String  userList(Model model,@PathVariable Integer num){
-        if(num==null){
-            num=1;
-        }
-        //所有数据
-        List<Business> businesses =businessMapper.selectAll();
-        //页面展示数据
-        List<Business> list = new ArrayList<>();
-        for(int i =10;i>0;i--){
-            if ((10*num-i) < businesses.size()){
-                list.add(businesses.get(10*num-i));
-            }
-        }
-        //页码
-        int[] count = new int[businesses.size()/10+1];
-        for (int j = 0; j < businesses.size()/10+1; j++){
-            count[j] = j+1;
-        }
 
-        model.addAttribute("count",count);
-        model.addAttribute("size",businesses.size());
-        model.addAttribute("users",list);
-        return  "admin-list";
-    }
+
 }
