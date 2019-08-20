@@ -16,6 +16,9 @@ public interface CommodityTypeMapper {
     @Select("select * from commodity_type where type = #{type}")
     public CommodityType selectByType(String type);
 
+    @Select("select * from commodity_type where describes like concat('%',#{describes},'%') ")
+    public List<CommodityType> selectByDescribes(String describes);
+
     @Insert("insert into commodity_type(type,describes) values(#{type},#{describes})")
     public void insert(CommodityType commodityType);
 

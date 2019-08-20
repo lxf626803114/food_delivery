@@ -61,4 +61,11 @@ public class UserCustomerController {
          return "redirect:/member_list";
     }
 
+     @RequestMapping("/member")
+    public  String  getLikeMember(String memberuserid ,ModelMap map){
+        List<UserCustomer> usermembers=userCustomerMapper.selectLikemember(memberuserid);
+        map.addAttribute("usermembers",usermembers);
+        return "member_list";
+     }
+
 }

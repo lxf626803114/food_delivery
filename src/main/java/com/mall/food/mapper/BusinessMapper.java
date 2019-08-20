@@ -27,5 +27,8 @@ public interface BusinessMapper {
             "address=#{address},balance=#{balance},b_picture=#{bPicture},b_logo=#{b_logo} " +
             "where a_id=#{aId}")
     public void update(Business business);
+    //根据商家账号进行模糊查询
+    @Select("select * from business where  b_id LIKE  concat('%',#{bId},'%')")
+    public List<Business> selectLikeBusiness(String bId);
 }
 
