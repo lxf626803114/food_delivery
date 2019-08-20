@@ -22,7 +22,9 @@
     <span class="modular fl"><i class="user"></i><em>会员列表</em></span>
   </div>
   <div class="operate">
-   <form action="@{/usercustomer}" method="post">
+   <form  th:action="@{/usercustomer}" method="post">
+
+
     <input type="text" class="textBox length-long" name="userId" placeholder="输入会员昵称...">
     <input type="submit" value="查询" class="tdBtn">
    </form>

@@ -22,9 +22,9 @@
     <span class="modular fl"><i class="user"></i><em>会员列表</em></span>
   </div>
   <div class="operate">
-   <form>
-    <input type="text" class="textBox length-long" placeholder="输入会员昵称、姓名、手机号码...">
-    <input type="button" value="查询" class="tdBtn">
+   <form th:action="@{/member}" method="post">
+    <input type="text" class="textBox length-long" name="memberuserid" placeholder="输入会员账号...">
+    <input type="submit" value="查询" class="tdBtn">
    </form>
   </div>
   <table class="list-style Interlaced" align="center">
@@ -56,7 +56,7 @@
     <td class="center">
      <!--<a th:href="@{/usercustomer/}+${usercustomer.userId}"  title="编辑"><img src="images\icon_edit.gif"></a>
      <a href="account.html" class="inline-block" title="资金管理"><img src="images\icon_account.gif"></a>-->
-     <a  class="update btn btn-danger" title="降级" th:href="@{/usermember/}+${usermember.userId}"> 降级</a>
+     <a  class="update btn btn-warning" title="降级" th:href="@{/usermember/}+${usermember.userId}"> 降级</a>
      <button class="delete btn btn-danger"   th:attr="del_uri=@{/usermember/}+${usermember.userId}"> 删除</button>
     </td>
    </tr>
