@@ -7,23 +7,22 @@
 <link href="style\adminStyle.css" rel="stylesheet" type="text/css">
 <script src="js\jquery.js"></script>
 <script src="js\public.js"></script>
- <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
- <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
- <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</head>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script></head>
 <body>
  <div class="wrap">
   <div class="page-title">
     <span class="modular fl"><i class="user"></i><em>商家列表</em></span>
   </div>
   <div class="operate">
-   <form action="" method="post">
-    <input type="text" class="textBox length-long" name="username" placeholder="输入会员账号...">
+   <form th:action="@{/businessid}" method="post">
+    <input type="text" class="textBox length-long" name="bId" placeholder="输入店铺账号...">
     <input type="submit" value="查询" class="tdBtn">
    </form>
   </div>
@@ -60,6 +59,27 @@
    
 
   </table>
+     <!-- Operation -->
+
+     <!-- turn page -->
+     <nav aria-label="Page navigation" style="margin-right: 0px">
+         <ul class="pagination" style="float: right">
+             <li>
+
+                 <a th:if="${num-1}!=0"  th:href="@{/businesspage}+${num-1}" aria-label="Previous">
+                     <span aria-hidden="true">&laquo;</span>
+                 </a>
+             </li>
+             <li th:each="num:${count}">
+                 <a th:href="@{/businesspage}+${num}" th:text="${num}" ></a>
+             </li>
+             <li>
+                 <a th:if="${num+1} <= ${size/10+1}"  th:href="@{/user/list/}+${num+1}" aria-label="Next">
+                     <span aria-hidden="true">&raquo;</span>
+                 </a>
+             </li>
+         </ul>
+     </nav>
   <form action="" method="post" id="userDelForm" style="display: none">
    <input  type="hidden" name="_method" value="delete"/>
    <button type="submit" class="btndelete">删除</button>
@@ -71,14 +91,7 @@
 
   <!-- BatchOperation -->
   <div style="overflow:hidden;">
-      <!-- Operation -->
 
-	  <!-- turn page -->
-	  <div class="turnPage center fr">
-	   <a>第一页</a>
-	   <a>1</a>
-	   <a>最后一页</a>
-	  </div>
   </div>
  </div>
 

@@ -11,8 +11,8 @@ import java.util.List;
 public interface BusinessMapper {
     @Select("select * from business where b_id=#{bId}")
     public Business selectBusinessById(String bId);
-
-    @Select("select * from business")
+ //显示所有商家
+     @Select("select * from business")
     public List<Business> selectAll();
 
     @Insert("insert into business(b_id,b_name,password,b_tel,b_email,key,boss_name,age,sex,address,balance,b_picture,b_logo)" +
@@ -27,5 +27,8 @@ public interface BusinessMapper {
             "address=#{address},balance=#{balance},b_picture=#{bPicture},b_logo=#{b_logo} " +
             "where a_id=#{aId}")
     public void update(Business business);
+    //根据商家账号进行模糊查询
+    @Select("select * from business where  b_id LIKE  concat('%',#{bId},'%')")
+    public List<Business> selectLikeBusiness(String bId);
 }
 
