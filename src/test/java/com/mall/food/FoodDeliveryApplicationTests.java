@@ -34,9 +34,17 @@ public class FoodDeliveryApplicationTests {
     private CouponMapper couponMapper;
     @Test
     public void contextLoads() {
-        List<UserCustomer>   userCustomers=userCustomerMapper.selectLikeName("182");
+//        Coupon coupon=new Coupon();
+//        coupon.setDescribes("youhuiqu");
+//        coupon.setToplimit(12);
+//        coupon.setAmount(32);
+//        coupon.setNumbers(34);
+//        coupon.setCoupon(5);
+//        //couponMapper.insert(coupon);
+//        couponMapper.update(coupon);
 
-        System.out.println(userCustomers);
+        //System.out.println(couponMapper.selCouponByType(5));
+  couponMapper.deleteById(3);
     }
 
 }
