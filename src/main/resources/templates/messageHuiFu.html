@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>回复留言界面</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="style\adminStyle.css" th:href="@{style/adminStyle.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="wrap">
+    <div class="page-title">
+        <span class="modular fl"><i class="settings"></i><em>优惠券</em></span>
+    </div>
+    <form th:action="@{/coupon/add}" method="post" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+        <input type="hidden" name="_method" value="put" th:if="${coupon!=null}"/>
+        <input type="hidden" name="coupon" th:if="${coupon!=null}" th:value="${coupon.coupon}">
+        <div class="form-group">
+            <label>优惠券描述</label>
+            <input type="text" name="describes" class="form-control" th:value="${coupon!=null}?${coupon.describes}">
+        </div>
+        <div class="form-group">
+            <label>满减条件</label>
+            <input type="text" name="toplimit" class="form-control" th:value="${coupon!=null}?${coupon.toplimit}">
+        </div>
+        <div class="form-group">
+            <label>满减金额</label>
+            <input type="text" name="amount"  class="form-control" th:value="${coupon!=null}?${coupon.amount}">
+        </div>
+        <div class="form-group">
+            <label>优惠券数量</label>
+            <input type="text" name="numbers" class="form-control" th:value="${coupon!=null}?${coupon.numbers}">
+        </div>
+        <div class="form-group">
+            <label>图片地址</label>
+            <input type="text" name="icon" class="form-control" th:value="${coupon!=null}?${coupon.icon}">
+        </div>
+        <button type="submit" class="btn btn-primary" th:text="${coupon!=null}?'修改':'添加'">添加</button>
+    </form>
+</div>
+</body>
+</html>
