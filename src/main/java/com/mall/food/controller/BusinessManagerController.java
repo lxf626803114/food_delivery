@@ -42,5 +42,4 @@ public class BusinessManagerController {
       return "business_list";
     }
 
-
 }

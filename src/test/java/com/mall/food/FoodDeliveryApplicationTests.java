@@ -1,9 +1,6 @@
 package com.mall.food;
 
-import com.mall.food.mapper.AdvertisementMapper;
-import com.mall.food.mapper.CommodityTypeMapper;
-import com.mall.food.mapper.CouponMapper;
-import com.mall.food.mapper.UserCustomerMapper;
+import com.mall.food.mapper.*;
 import com.mall.food.pojo.Advertisement;
 import com.mall.food.pojo.CommodityType;
 import com.mall.food.pojo.Coupon;
@@ -32,8 +29,12 @@ public class FoodDeliveryApplicationTests {
     private UserCustomerMapper userCustomerMapper;
     @Autowired
     private CouponMapper couponMapper;
+    @Autowired
+    private BusinessMapper businessMapper;
     @Test
     public void contextLoads() {
+
+      /*  System.out.println(businessMapper.selectLikeBusiness("13"));*/
 //        Coupon coupon=new Coupon();
 //        coupon.setDescribes("youhuiqu");
 //        coupon.setToplimit(12);
