@@ -1,5 +1,7 @@
 package com.mall.food.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.mall.food.mapper.CommodityTypeMapper;
 import com.mall.food.pojo.CommodityType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +16,12 @@ public class CommodityTypeController {
     @Autowired
     private CommodityTypeMapper commodityTypeMapper;
     @GetMapping("/commodityTypes")
-    public String findAll(Model model){
+    public String findAll(Model model ,@RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum){
+        PageHelper.startPage(pageNum,5);
         List<CommodityType> commodityTypes = commodityTypeMapper.selectAll();
-        model.addAttribute("commodityTypes",commodityTypes);
+        PageInfo<CommodityType> page = new PageInfo<>(commodityTypes);
+        System.out.println(page.getSize());
+        model.addAttribute("page",page);
         return "commodityTypes_list";
     }
 

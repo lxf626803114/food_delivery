@@ -26,7 +26,7 @@
             <th class="center">商品描述</th>
             <th colspan="2" class="center">操作</th>
         </tr>
-        <tr th:each="commodityType:${commodityTypes}" class="center">
+        <tr th:each="commodityType:${page.list}" class="center">
             <td th:text="${commodityType.getType()}"></td>
             <td th:text="${commodityType.getDescribes()}"></td>
             <td>
@@ -44,9 +44,12 @@
     <!-- BatchOperation -->
     <div style="overflow:hidden;">
         <div class="turnPage center fr">
-            <a>第一页</a>
-            <a>1</a>
-            <a>最后一页</a>
+            <a th:href="@{/commodityTypes(pageNum=1)}">首页</a>
+            <a th:if="${not page.isIsFirstPage()}" th:href="@{/commodityTypes(pageNum=${page.getPageNum()-1})}">上页</a>
+            <a th:if="${not page.isIsLastPage()}" th:href="@{/commodityTypes(pageNum=${page.getPageNum()+1})}">下页</a>
+            <a th:href="@{/commodityTypes(pageNum=${page.getPageSize()-1})}">末页</a>
+            第<span th:text="${page.getPageNum()}"></span>页
+            共<span th:text="${page.getPages()}" ></span>页
         </div>
     </div>
 </div>
