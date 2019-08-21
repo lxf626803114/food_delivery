@@ -41,7 +41,7 @@
      <th style="text-align: center">职业</th>
      <th style="text-align: center">操作</th>
    </tr>
-   <tr th:each="usermember:${usermembers}">
+   <tr th:each="usermember:${page.list}">
     <td class="center" th:text="${usermember.member==0?'普通用户':'会员'}"></td>
     <td class="center" th:text="${usermember.userId}"></td>
     <td class="center" th:text="${usermember.userName}"></td>

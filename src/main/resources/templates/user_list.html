@@ -43,7 +43,7 @@
      <th style="text-align: center">职业</th>
      <th style="text-align: center">操作</th>
    </tr>
-   <tr th:each="usercustomer:${userCustomers}">
+   <tr th:each="usercustomer:${page.list}">
     <td class="center" th:text="${usercustomer.member==0?'普通用户':'会员'}"></td>
     <td class="center" th:text="${usercustomer.userId}"></td>
     <td class="center" th:text="${usercustomer.userName}"></td>
@@ -53,7 +53,6 @@
     <td class="center" th:text="${usercustomer.age}"></td>
     <td class="center" th:text="${usercustomer.sex}"></td>
     <td class="center" th:text="${usercustomer.address}"></td>
-
     <td class="center" th:text="${usercustomer.job}"></td>
 
     <td class="center">
@@ -77,14 +76,19 @@
       <!-- Operation -->
 
 	  <!-- turn page -->
-	  <div class="turnPage center fr">
-	   <a>第一页</a>
-	   <a>1</a>
-	   <a>最后一页</a>
-	  </div>
+
   </div>
  </div>
-
+ <div style="overflow:hidden;">
+  <div class="turnPage center fr">
+   <a th:href="@{/user_list(pageNum=1)}">首页</a>
+   <a th:if="${not page.isIsFirstPage()}" th:href="@{/user_list(pageNum=${page.getPageNum()-1})}">上页</a>
+   <a th:if="${not page.isIsLastPage()}" th:href="@{/user_list(pageNum=${page.getPageNum()+1})}">下页</a>
+   <a th:href="@{/user_list(pageNum=${page.getPageSize()-1})}">末页</a>
+   第<span th:text="${page.getPageNum()}"></span>页
+   共<span th:text="${page.getPages()}" ></span>页
+  </div>
+ </div>
 
 <script type="text/javascript">
  $(function () {
