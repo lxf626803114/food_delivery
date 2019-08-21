@@ -71,6 +71,6 @@ mybatis:
 pagehelper:
   helper-dialect: mysql
   reasonable: true
-  support-methods-arguments: false
+  support-methods-arguments: true
   params:
 
