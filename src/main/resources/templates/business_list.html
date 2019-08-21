@@ -22,7 +22,7 @@
   </div>
   <div class="operate">
    <form th:action="@{/businessid}" method="post">
-    <input type="text" class="textBox length-long" name="bId" placeholder="输入店铺账号...">
+    <input type="text" class="textBox length-long" name="bId" placeholder="输入店铺账号..." >
     <input type="submit" value="查询" class="tdBtn">
    </form>
   </div>
@@ -79,7 +79,7 @@
  <div style="overflow:hidden;">
   <div class="turnPage center fr">
    <a th:href="@{/business_list(pageNum=1)}">首页</a>
-   <a th:if="${not page.isIsFirstPage()}" th:href="@{/business_list(pageNum=${page.getPageNum()-1})}">上页</a>
+   <a  name="" th:if="${not page.isIsFirstPage()}" th:href="@{/business_list(pageNum=${page.getPageNum()-1})}">上页</a>
    <a th:if="${not page.isIsLastPage()}" th:href="@{/business_list(pageNum=${page.getPageNum()+1})}">下页</a>
    <a th:href="@{/business_list(pageNum=${page.getPageSize()-1})}">末页</a>
    第<span th:text="${page.getPageNum()}"></span>页

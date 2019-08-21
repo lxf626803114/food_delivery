@@ -6,6 +6,7 @@ import com.mall.food.mapper.BusinessMapper;
 import com.mall.food.pojo.Business;
 import com.mall.food.pojo.CommodityType;
 import com.mall.food.service.BusinessmManagerService;
+import com.sun.deploy.panel.UpdatePanelFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,6 +52,7 @@ public class BusinessManagerController {
       List<Business> businesses=businessMapper.selectLikeBusiness(bId);
         PageInfo<Business> page = new PageInfo<>(businesses);
       model.addAttribute("page",page);
+    
       return "business_list";
     }
 
