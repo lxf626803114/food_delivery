@@ -23,7 +23,7 @@
     <th class="center">广告描述</th>
     <th colspan="2" class="center">操作</th>
    </tr>
-   <tr th:each="advertisement:${advertisements}" class="center">
+   <tr th:each="advertisement:${page.list}" class="center">
     <td th:text="${advertisement.getAdvId()}"></td>
     <td th:text="${advertisement.getComId()}" ></td>
     <td><img style="width: 50px;height: 40px" th:src="${advertisement.getPicture()}"></td>
@@ -42,27 +42,13 @@
   <!-- BatchOperation -->
   <div style="overflow:hidden;">
 	  <div class="turnPage center fr">
-        <!--分页 -->
-          <nav aria-label="Page navigation">
-              <ul class="pagination">
-                  <li>
-                      <a href="#" aria-label="Previous">
-                          <span aria-hidden="true">&laquo;</span>
-                      </a>
-                  </li>
-                  <li><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li><a href="#">5</a></li>
-                  <li>
-                      <a href="#" aria-label="Next">
-                          <span aria-hidden="true">&raquo;</span>
-                      </a>
-                  </li>
-              </ul>
-          </nav>
-       </div>
+            <a th:href="@{/advertisements(pageNum=1)}">首页</a>
+            <a th:if="${not page.isIsFirstPage()}" th:href="@{/advertisements(pageNum=${page.getPageNum()-1})}">上页</a>
+            <a th:if="${not page.isIsLastPage()}" th:href="@{/advertisements(pageNum=${page.getPageNum()+1})}">下页</a>
+            <a th:href="@{/advertisements(pageNum=${page.getPageSize()-1})}">末页</a>
+            第<span th:text="${page.getPageNum()}"></span>页
+            共<span th:text="${page.getPages()}" ></span>页
+      </div>
   </div>
  </div>
  <script type="text/javascript">

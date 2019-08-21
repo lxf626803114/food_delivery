@@ -16,11 +16,11 @@ public class AdvertisementController {
     @Autowired
     private AdvertisementMapper advertisementMapper;
     @GetMapping("/advertisements")
-    public String findAll(Model model){
-//        PageHelper.startPage(1,3);//这行是重点，表示从pageNum页开始，每页pageSize条数据
+    public String findAll(Model model,@RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum){
+        PageHelper.startPage(pageNum,5);//这行是重点，表示从pageNum页开始，每页pageSize条数据
         List<Advertisement> advertisements = advertisementMapper.selectAll();
-//        PageInfo<Advertisement> pageInfo = new PageInfo(advertisements);
-        model.addAttribute("advertisements",advertisements);
+        PageInfo<Advertisement> page = new PageInfo(advertisements);
+        model.addAttribute("page",page);
 //        model.addAttribute("pageInfo",pageInfo);
         return "advertising_list";
     }
