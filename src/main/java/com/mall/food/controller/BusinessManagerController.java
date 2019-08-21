@@ -52,7 +52,7 @@ public class BusinessManagerController {
       List<Business> businesses=businessMapper.selectLikeBusiness(bId);
         PageInfo<Business> page = new PageInfo<>(businesses);
       model.addAttribute("page",page);
-    
+
       return "business_list";
     }
 
