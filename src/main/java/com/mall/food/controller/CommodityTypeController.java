@@ -34,12 +34,12 @@ public class CommodityTypeController {
     @GetMapping("/commodity")
     public String fuzzy(String describes,Model model,@RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum){
         List<CommodityType> commodityTypes = null;
-        if (!describes.equals("")&&describes!=""){
+        if (!describes.equals("")&&describes!=null){
             PageHelper.startPage(pageNum,5);
-             commodityTypes = commodityTypeMapper.selectByDescribes(describes);
+            commodityTypes = commodityTypeMapper.selectByDescribes(describes);
         }else {
             PageHelper.startPage(pageNum,5);
-             commodityTypes = commodityTypeMapper.selectAll();
+            commodityTypes = commodityTypeMapper.selectAll();
         }
         PageInfo<CommodityType> page = new PageInfo<>(commodityTypes);
         model.addAttribute("page",page);
