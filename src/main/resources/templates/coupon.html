@@ -29,18 +29,18 @@
             <th class="center">满减条件</th>
             <th class="center">减少金额</th>
             <th class="center">优惠券数量</th>
-            <th class="center">图片地址</th>
+            <th class="center">图片</th>
             <th colspan="2" class="center"> 操作</th>
         </tr>
         </thead>
         <tbody class="center">
-        <tr th:each="c:${coupons}">
+        <tr th:each="c:${page.list}">
             <td th:text="${c.coupon}"></td>
             <td th:text="${c.describes}"></td>
             <td th:text="${c.toplimit}"></td>
             <td th:text="${c.amount}"></td>
             <td th:text="${c.numbers}"></td>
-            <td th:text="${c.icon}"></td>
+            <td ><img style="width: 50px;height: 40px" th:src="${c.icon}"></td>
             <td><button class="btn btn-warning"><a th:href="@{/coupon/add/}+${c.coupon}" style="text-decoration: none ;color: white">修改</a></button></td>
             <td><button class="btn btn-danger "><a class="btn-del" th:attr="del_uri=@{/coupon/add/}+${c.coupon}" style="text-decoration: none ;color: white" >删除</a></button></td>
         </tr>
@@ -51,11 +51,16 @@
     </form>
 
         <!-- turn page -->
+    <div style="overflow:hidden;">
         <div class="turnPage center fr">
-            <a>第一页</a>
-            <a>1</a>
-            <a>最后一页</a>
+            第<span th:text="${page.getPageNum()}"></span>页
+            共<span th:text="${page.getPages()}" ></span>页
+            <a style="text-decoration: none" th:href="@{/coupon/alls}">首页</a>
+            <a style="text-decoration: none" th:if="${not page.isIsFirstPage()}" th:href="@{/coupon/alls(p=${page.getPageNum()-1})}">上页</a>
+            <a style="text-decoration: none" th:if="${not page.isIsLastPage()}" th:href="@{/coupon/alls(p=${page.getPageNum()+1})}">下页</a>
+            <a style="text-decoration: none" th:href="@{/coupon/alls(p=${page.getPageSize()-1})}">末页</a>
         </div>
+    </div>
     </div>
 </div>
 <script type="text/javascript">

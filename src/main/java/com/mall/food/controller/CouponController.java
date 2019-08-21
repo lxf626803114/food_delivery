@@ -1,5 +1,7 @@
 package com.mall.food.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.mall.food.pojo.Coupon;
 import com.mall.food.service.CouponService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +17,11 @@ public class CouponController {
     @Autowired
     private CouponService couponService;
       @GetMapping("alls")
-      public String findAll(Model model){
+      public String findAll(Model model, @RequestParam(value = "p",defaultValue = "1") Integer pages){
+          PageHelper.startPage(pages,5);
         List<Coupon> list=couponService.getAll();
-        model.addAttribute("coupons",list);
+          PageInfo<Coupon> page=new PageInfo<>(list);
+        model.addAttribute("page",page);
          return "coupon";
       }
       //查询单条数据，判断是否为空。对应进行添加或修改
