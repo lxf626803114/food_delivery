@@ -20,7 +20,6 @@ public class CommodityTypeController {
         PageHelper.startPage(pageNum,5);
         List<CommodityType> commodityTypes = commodityTypeMapper.selectAll();
         PageInfo<CommodityType> page = new PageInfo<>(commodityTypes);
-        System.out.println(page.getSize());
         model.addAttribute("page",page);
         return "commodityTypes_list";
     }
@@ -33,9 +32,18 @@ public class CommodityTypeController {
     }
 
     @GetMapping("/commodity")
-    public String fuzzy(String describes,Model model){
-        List<CommodityType> commodityTypes = commodityTypeMapper.selectByDescribes(describes);
-        model.addAttribute("commodityTypes",commodityTypes);
+    public String fuzzy(String describes,Model model,@RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum){
+        List<CommodityType> commodityTypes = null;
+        if (!describes.equals("")&&describes!=""){
+            PageHelper.startPage(pageNum,5);
+             commodityTypes = commodityTypeMapper.selectByDescribes(describes);
+        }else {
+            PageHelper.startPage(pageNum,5);
+             commodityTypes = commodityTypeMapper.selectAll();
+        }
+        PageInfo<CommodityType> page = new PageInfo<>(commodityTypes);
+        model.addAttribute("page",page);
+        model.addAttribute("describes",describes);
         return "commodityTypes_list";
     }
 

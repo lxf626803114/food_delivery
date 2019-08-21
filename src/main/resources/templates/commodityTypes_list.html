@@ -12,7 +12,7 @@
 <div class="wrap">
     <div class="operate">
         <form th:action="@{/commodity}" >
-            <input type="text" class="textBox length-long" name="describes" placeholder="请输入关键字搜索">
+            <input type="text" class="textBox length-long" name="describes" id="describes" placeholder="请输入关键字搜索">
             <input type="submit" value="查询" class="tdBtn">
         </form>
     </div>
@@ -44,10 +44,10 @@
     <!-- BatchOperation -->
     <div style="overflow:hidden;">
         <div class="turnPage center fr">
-            <a th:href="@{/commodityTypes(pageNum=1)}">首页</a>
-            <a th:if="${not page.isIsFirstPage()}" th:href="@{/commodityTypes(pageNum=${page.getPageNum()-1})}">上页</a>
-            <a th:if="${not page.isIsLastPage()}" th:href="@{/commodityTypes(pageNum=${page.getPageNum()+1})}">下页</a>
-            <a th:href="@{/commodityTypes(pageNum=${page.getPageSize()-1})}">末页</a>
+            <a th:href="@{/commodity(pageNum=1,describes=${describes})}">首页</a>
+            <a th:if="${not page.isIsFirstPage()}" th:href="@{/commodity(pageNum=${page.getPageNum()-1},describes=${describes})}">上页</a>
+            <a th:if="${not page.isIsLastPage()}" th:href="@{/commodity(pageNum=${page.getPageNum()+1},describes=${describes})}">下页</a>
+            <a th:href="@{/commodity(pageNum=${page.getPageSize()-1},describes=${describes})}">末页</a>
             第<span th:text="${page.getPageNum()}"></span>页
             共<span th:text="${page.getPages()}" ></span>页
         </div>
