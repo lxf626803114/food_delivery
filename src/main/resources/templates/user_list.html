@@ -43,7 +43,7 @@
      <th style="text-align: center">职业</th>
      <th style="text-align: center">操作</th>
    </tr>
-   <tr th:each="usercustomer:${userCustomers}">
+   <tr th:each="usercustomer:${page.list}">
     <td class="center" th:text="${usercustomer.member==0?'普通用户':'会员'}"></td>
     <td class="center" th:text="${usercustomer.userId}"></td>
     <td class="center" th:text="${usercustomer.userName}"></td>
@@ -74,14 +74,14 @@
 
   <!-- BatchOperation -->
   <div style="overflow:hidden;">
-      <!-- Operation -->
-
-	  <!-- turn page -->
-	  <div class="turnPage center fr">
-	   <a>第一页</a>
-	   <a>1</a>
-	   <a>最后一页</a>
-	  </div>
+   <div class="turnPage center fr">
+    第<span th:text="${page.getPageNum()}"></span>页
+    共<span th:text="${page.getPages()}" ></span>页
+    <a style="text-decoration: none" th:href="@{/usercustomer(p=1,userId=${userId})}">首页</a>
+    <a style="text-decoration: none" th:if="${not page.isIsFirstPage()}" th:href="@{/usercustomer(p=${page.getPageNum()-1},userId=${userId})}">上页</a>
+    <a style="text-decoration: none" th:if="${not page.isIsLastPage()}" th:href="@{/usercustomer(p=${page.getPageNum()+1},userId=${userId})}">下页</a>
+    <a style="text-decoration: none" th:href="@{/usercustomer(p=${page.getPageSize()-1},bId=${bId})}">末页</a>
+   </div>
   </div>
  </div>
 

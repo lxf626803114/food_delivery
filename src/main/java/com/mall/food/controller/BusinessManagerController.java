@@ -23,9 +23,11 @@ public class BusinessManagerController {
     @Autowired
     private BusinessMapper businessMapper;
       @RequestMapping("/business_list")
-    public  String  BusinessAll(Model model){
+    public  String  BusinessAll(Model model,@RequestParam(value = "p",defaultValue = "1") Integer pageNum){
+          PageHelper.startPage(pageNum,5);
          List<Business> businesses =bms.findAll();
-         model.addAttribute("businesses",businesses);
+         PageInfo<Business> page=new PageInfo<>(businesses);
+         model.addAttribute("page",page);
          return "business_list";
     }
     @DeleteMapping("/business/{BId}")
@@ -34,20 +36,20 @@ public class BusinessManagerController {
         return "redirect:/business_list";
     }
 @RequestMapping("/businessid")
-    public  String  LikeBusiness(String bId , ModelMap map,@RequestParam(value = "p",defaultValue = "1") Integer pageNum){
-List<Business> businesses=null;
+    public  String  LikeBusiness(String bId , Model map,@RequestParam(value = "p",defaultValue = "1") Integer pageNum){
+        List<Business> businesses=null;
       if(!bId.equals("")&&bId!=null){
           PageHelper.startPage(pageNum,5);
-          businesses=businessMapper.selectAll();
+          businesses=businessMapper.selectLikeBusiness(bId);
       }else{
 
-          PageHelper.startPage(pageNum,1);
-          businesses=businessMapper.selectLikeBusiness(bId);
+          PageHelper.startPage(pageNum,5);
+          businesses=businessMapper.selectAll();
       }
      PageInfo<Business> page=new PageInfo<>(businesses);
 
      map.addAttribute("page",page);
-      map.addAttribute("businesses",businesses);
+     map.addAttribute("bId",bId);
       return "business_list";
     }
 

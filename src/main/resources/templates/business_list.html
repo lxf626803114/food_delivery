@@ -38,7 +38,7 @@
      <th style="text-align: center">店铺地址</th>
     <th style="text-align: center">操作</th>
    </tr>
-   <tr th:each="business:${businesses}">
+   <tr th:each="business:${page.list}">
 
     <td class="center" th:text="${business.getBName()}"></td>
     <td class="center" ><img th:src="${business.getBLogo()}" style="width: 50px;height: 40px" alt=""/></td>
@@ -67,7 +67,16 @@
    <button type="submit" class="btndelete">删除</button>
   </form>
 
-
+  <div style="overflow:hidden;">
+   <div class="turnPage center fr">
+    第<span th:text="${page.getPageNum()}"></span>页
+    共<span th:text="${page.getPages()}" ></span>页
+    <a style="text-decoration: none" th:href="@{/businessid(p=1,bId=${bId})}">首页</a>
+    <a style="text-decoration: none" th:if="${not page.isIsFirstPage()}" th:href="@{/businessid(p=${page.getPageNum()-1},bId=${bId})}">上页</a>
+    <a style="text-decoration: none" th:if="${not page.isIsLastPage()}" th:href="@{/businessid(p=${page.getPageNum()+1},bId=${bId})}">下页</a>
+    <a style="text-decoration: none" th:href="@{/businessid(p=${page.getPageSize()-1},bId=${bId})}">末页</a>
+   </div>
+  </div>
 
 
 

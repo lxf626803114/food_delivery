@@ -1,15 +1,15 @@
 package com.mall.food.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.mall.food.mapper.UserCustomerMapper;
 import com.mall.food.pojo.UserCustomer;
 import com.mall.food.service.UserCustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,16 +20,27 @@ public class UserCustomerController {
     @Autowired
     private UserCustomerMapper userCustomerMapper;
     @GetMapping("/user_list")
-    public String  userCustomer(ModelMap map){
+    public String  userCustomer(ModelMap map,@RequestParam(value = "p",defaultValue = "1") Integer pageNum){
+        PageHelper.startPage(pageNum,5);
        List<UserCustomer> userCustomers=userCustomerService.userCustomergetAll();
-        map.addAttribute("userCustomers",userCustomers);
+        PageInfo<UserCustomer> page=new PageInfo<>(userCustomers);
+        map.addAttribute("page",page);
         return "user_list";
     }
 
     @RequestMapping("/usercustomer")
-    public String  LikeUserId(String userId, ModelMap map ){
-        List<UserCustomer> userCustomers=userCustomerMapper.selectLikeName(userId);
-        map.addAttribute("userCustomers",userCustomers);
+    public String  LikeUserId(String userId, Model map, @RequestParam(value = "p",defaultValue = "1") Integer pageNum ){
+        List<UserCustomer> userCustomers=null;
+        if(!userId.equals("")&&userId!=null){
+            PageHelper.startPage(pageNum,5);
+            userCustomers=userCustomerMapper.selectLikeName(userId);
+        }else{
+            PageHelper.startPage(pageNum,5);
+            userCustomers=userCustomerMapper.selectAll();
+        }
+        PageInfo<UserCustomer> page=new PageInfo<>(userCustomers);
+        map.addAttribute("page",page);
+        map.addAttribute("userId",userId);
         return "user_list";
     }
 
@@ -46,9 +57,11 @@ public class UserCustomerController {
         return "redirect:/user_list";
     }
     @GetMapping("/member_list")
-    public String  userCustomerMemeber(ModelMap map){
+    public String  userCustomerMemeber(Model map,@RequestParam(value = "p",defaultValue = "1") Integer pageNum){
+        PageHelper.startPage(pageNum,5);
         List<UserCustomer> usermembers  = userCustomerService.selectMember();
-        map.addAttribute("usermembers",usermembers);
+        PageInfo<UserCustomer> pages=new PageInfo<>(usermembers);
+        map.addAttribute("page",pages);
         return "member_list";
 
     }
@@ -62,9 +75,17 @@ public class UserCustomerController {
     }
 
      @RequestMapping("/member")
-    public  String  getLikeMember(String memberuserid ,ModelMap map){
-        List<UserCustomer> usermembers=userCustomerMapper.selectLikemember(memberuserid);
-        map.addAttribute("usermembers",usermembers);
+    public  String  getLikeMember(String memberuserid ,Model map,@RequestParam(value = "p",defaultValue = "1") Integer pageNum){
+        List<UserCustomer> usermembers=null;
+        PageHelper.startPage(pageNum,5);
+        if(!memberuserid.equals("")&&memberuserid!=null){
+            usermembers=userCustomerMapper.selectLikemember(memberuserid);
+        }else{
+            usermembers=userCustomerMapper.selectmember();
+        }
+        PageInfo<UserCustomer> page=new PageInfo<>(usermembers);
+        map.addAttribute("page",page);
+        map.addAttribute("memberuserid",memberuserid);
         return "member_list";
      }
 
